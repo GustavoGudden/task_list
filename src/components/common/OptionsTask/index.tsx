@@ -41,7 +41,9 @@ export const OptionsTask = ({ index, setOpenModal, handleArhivedTask, handleFini
       <View className="mt-4">
         <ButtonComponent
           label="Cancel"
-          press={() => {}}
+          press={() => {
+            setOpenModal(false);
+          }}
           className="rounded-lg px-4 mt-2  py-3 items-center bg-slate-200"
           textClassName="font-[500] text-sm text-slate-800"
         />

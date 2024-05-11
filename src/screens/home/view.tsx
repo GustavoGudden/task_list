@@ -33,7 +33,6 @@ export const ViewHome = () => {
     handleDeleteTask,
     handleFinishTask,
     selectTask,
-    onChange,
     showDatepicker,
   } = HomeViewModel();
 

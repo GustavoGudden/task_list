@@ -54,7 +54,7 @@ export const BottomSheet = ({ open, closeSheet, body }: ISheetProps) => {
           <Animated.View
             entering={SlideInDown.springify().damping(15)}
             exiting={SlideOutDown}
-            className={`w-full  absolute bottom-[-20] bg-[#FFFFFF] rounded-t-xl `}
+            className={`w-full absolute bottom-[-20] bg-white rounded-t-xl `}
             style={translateY}
           >
             {body}

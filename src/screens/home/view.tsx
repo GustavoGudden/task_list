@@ -3,9 +3,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AlertTriangle, Plus } from 'lucide-react-native';
 import { BottomSheet } from '@components/ui/sheet';
-import { NewTaskForm } from '@components/common/newTaskComponent';
+import { NewTaskForm } from '@components/common/taskform';
 import { ButtonComponent } from '@components/ui/button';
-import { TaskComponent } from '@components/common/taskComponent';
+import { TaskComponent } from '@components/common/task';
 import { ChipComponent } from '@components/ui/chip';
 import { MocksCategory } from '@mocks/taskFilterMock';
 import { HomeViewModel } from './view-model';
@@ -36,7 +36,7 @@ export const ViewHome = () => {
     onChange,
     showDatepicker,
   } = HomeViewModel();
-  
+
   console.log(selectFilter);
 
   return (
@@ -44,14 +44,14 @@ export const ViewHome = () => {
       <SafeAreaView className="px-5 py-8 gap-6 flex-1 bg-[#F8FAFC] relative">
         <View className="flex-row items-center justify-between">
           <View>
-            <Text className="text-[20px] font-[600] text-[##000000]">Today’s Tasks</Text>
-            <Text className="text-sm font-[500] text-[#64748B]">Wednesday, 11 May</Text>
+            <Text className="text-[20px] font-[600] text-slate-800">Today’s Tasks</Text>
+            <Text className="text-sm font-[500] text-slate-500">Wednesday, 11 May</Text>
           </View>
           <View>
             <ButtonComponent
               label="New task"
-              className="px-4 py-2 rounded-lg bg-[#DBEAFE] flex-row items-center"
-              textClassName="font-[400] text-sm text-[#1D4ED8]"
+              className="px-4 py-2 rounded-lg bg-blue-100 flex-row items-center"
+              textClassName="font-[500] text-sm text-blue-700"
               icon={<Plus size={24} color={'#1D4ED8'} />}
               press={OpenSheet}
             />
@@ -102,7 +102,6 @@ export const ViewHome = () => {
                 <NewTaskForm
                   newtaskForm={newtaskForm}
                   setTaskForm={setTaskForm}
-                  onChange={onChange}
                   showDatepicker={showDatepicker}
                   HandleCreateTask={HandleCreateTask}
                   oncloseBottomSheet={CloseSheet}

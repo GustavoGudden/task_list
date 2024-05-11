@@ -18,6 +18,7 @@ export const ViewHome = () => {
   const {
     setModalVisible,
     modalVisible,
+    handleRetornData,
     CloseSheet,
     OpenSheet,
     sheetVisible,
@@ -32,7 +33,11 @@ export const ViewHome = () => {
     handleDeleteTask,
     handleFinishTask,
     selectTask,
+    onChange,
+    showDatepicker,
   } = HomeViewModel();
+  
+  console.log(selectFilter);
 
   return (
     <>
@@ -52,10 +57,10 @@ export const ViewHome = () => {
             />
           </View>
         </View>
-        <View className="flex-row justify-between">
+        <View className="flex-row justify-between ">
           {MocksCategory.map((category, index) => (
             <TouchableOpacity onPress={() => setSelectFilter(index)} key={index}>
-              <ChipComponent label={category.category} number="35" isSelect={selectFilter === index ? true : false} />
+              <ChipComponent label={category.category.toLocaleLowerCase()} number="35" isSelect={selectFilter === index ? true : false} />
             </TouchableOpacity>
           ))}
         </View>
@@ -66,7 +71,7 @@ export const ViewHome = () => {
               <Text className="text-xl font-[400]">Nenhuma Task encontrada</Text>
             </View>
           ) : (
-            TaskData.map((task: TaskModel, index) => (
+            handleRetornData(TaskData).map((task: TaskModel, index) => (
               <TouchableOpacity key={index} onLongPress={() => handleOpenOptionsBottomSheet(index)}>
                 <TaskComponent task={task} />
               </TouchableOpacity>
@@ -97,6 +102,8 @@ export const ViewHome = () => {
                 <NewTaskForm
                   newtaskForm={newtaskForm}
                   setTaskForm={setTaskForm}
+                  onChange={onChange}
+                  showDatepicker={showDatepicker}
                   HandleCreateTask={HandleCreateTask}
                   oncloseBottomSheet={CloseSheet}
                 />

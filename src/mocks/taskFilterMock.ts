@@ -1,1 +1,1 @@
-export const MocksCategory = [{ category: 'ALL' }, { category: 'OPEN' }, { category: 'CLOSED' }, { category: 'ARCHIVED' }];
+export const MocksCategory = [{ category: 'ALL' }, { category: 'OPEN' }, { category: 'CLOSE' }, { category: 'ARCHIVED' }];

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { HomeModel } from './model';
 import { TaskModel } from '@common/types/task.model';
 import { TaskData } from '@data/TaskData';
+import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+import { MocksCategory } from '@mocks/taskFilterMock';
 
 export const HomeViewModel = (): HomeModel => {
   const [sheetVisible, setSheetVisible] = useState(false);
@@ -60,7 +62,34 @@ export const HomeViewModel = (): HomeModel => {
     setSheetVisible(false);
   }
 
+  function handleRetornData(taskData: TaskModel[]) {
+    if (selectFilter === 0) {
+      return taskData;
+    }
+    const filterData = TaskData.filter((task) => task.status === MocksCategory[selectFilter].category);
+    return filterData;
+  }
+
+  const onChange = (event: any, selectedDate: any) => {
+    const currentDate = selectedDate;
+    setTaskForm((prevValue) => ({ ...prevValue, initialDate: currentDate }));
+  };
+
+  const showDatepicker = (currentValue: Date | null) => {
+    if (currentValue === null) {
+      return;
+    }
+    DateTimePickerAndroid.open({
+      value: currentValue,
+      onChange,
+      mode: 'date',
+    });
+  };
+
   return {
+    onChange,
+    handleRetornData,
+    showDatepicker,
     modalVisible,
     setModalVisible,
     sheetVisible,

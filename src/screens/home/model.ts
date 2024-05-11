@@ -20,4 +20,7 @@ export interface HomeModel {
   handleFinishTask: (index: number) => void;
   handleArhivedTask: (index: number) => void;
   handleDeleteTask: (index: number) => void;
+  onChange: (event: any, selectedDate: any) => void;
+  showDatepicker: (currentValue: Date | null) => void;
+  handleRetornData: (taskData: TaskModel[]) => TaskModel[];
 }

@@ -6,35 +6,18 @@ import { GripHorizontal } from 'lucide-react-native';
 import { Text, View } from 'react-native';
 
 import { formatDate } from '@common/utils/formatDate';
+import { TaskData } from '@data/TaskData';
 
 interface INewTaskForm {
   newtaskForm: TaskModel;
   setTaskForm: React.Dispatch<React.SetStateAction<TaskModel>>;
   HandleCreateTask: (task: TaskModel) => void;
+  onChange: (event: any, selectedDate: any) => void;
+  showDatepicker: (currentValue: Date | null) => void;
   oncloseBottomSheet: () => void;
 }
 
-export const NewTaskForm = ({ newtaskForm, setTaskForm, HandleCreateTask, oncloseBottomSheet }: INewTaskForm) => {
-  function handleCreate() {
-    HandleCreateTask(newtaskForm);
-  }
-
-  const onChange = (event: any, selectedDate: any) => {
-    const currentDate = selectedDate;
-    setTaskForm((prevValue) => ({ ...prevValue, initialDate: currentDate }));
-  };
-
-  const showDatepicker = (currentValue: Date | null) => {
-    if (currentValue === null) {
-      return;
-    }
-    DateTimePickerAndroid.open({
-      value: currentValue,
-      onChange,
-      mode: 'date',
-    });
-  };
-
+export const NewTaskForm = ({ newtaskForm, setTaskForm, HandleCreateTask, oncloseBottomSheet, onChange, showDatepicker }: INewTaskForm) => {
   return (
     <View className="flex-col w-full pt-3 px-5 pb-8 rounded-t-xl ">
       <View className="items-center">
@@ -75,7 +58,9 @@ export const NewTaskForm = ({ newtaskForm, setTaskForm, HandleCreateTask, onclos
       <View className="mt-5">
         <ButtonComponent
           label="Create task"
-          press={handleCreate}
+          press={() => {
+            HandleCreateTask(newtaskForm);
+          }}
           className="rounded-lg px-4 items-center py-3 bg-[#1D4ED8]"
           textClassName="font-[500] text-sm text-white"
         />
